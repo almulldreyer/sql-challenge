@@ -1,11 +1,19 @@
-create table departments(
-	dept_no varchar primary key not null,
-	dept_name varchar not null
-);
 
-select * from departments;
+-- Create table schema for each of the 6 CSV files.
+-- Create tables in correct order.
+-- Import CSVs into the corresponding SQL tables after.
 
-create table employees(
+-- Create each of the tables 
+
+---- Import departments
+CREATE TABLE departments ( 
+	dept_no VARCHAR(6) NOT NULL, 
+	dept_name VARCHAR (20) NOT NULL,
+	PRIMARY KEY (dept_no));
+SELECT * from departments;
+
+---- Import employees
+CREATE TABLE employees(
 	emp_no int primary key not null,
 	emp_title_id varchar not null,
 	birth_date date not null,
@@ -16,7 +24,10 @@ create table employees(
 	foreign key (emp_title_id) references titles(title_id)
 );
 
-create table dept_emp(
+SELECT * from employees;
+
+---- Import dept_emp
+CREATE TABLE dept_emp(
 	emp_no int,
 	dept_no varchar not null,
 	foreign key (dept_no) references departments(dept_no),
@@ -25,7 +36,8 @@ create table dept_emp(
 
 select * from dept_emp;
 
-create table dept_manager(
+---- Import dept_manager
+CREATE TABLE dept_manager(
 	dept_no varchar not null,
 	emp_no int,
 	foreign key (dept_no) references departments(dept_no),
@@ -34,7 +46,8 @@ create table dept_manager(
 
 select * from dept_manager;
 
-create table salaries(
+---- Import salaries
+CREATE TABLE salaries(
 	emp_no int not null,
 	salary int,
 	foreign key (emp_no) references employees(emp_no)
@@ -42,7 +55,8 @@ create table salaries(
 
 select * from salaries;
 
-create table titles(
+---- Import titles
+CREATE TABLE titles(
 	title_id varchar primary key not null,
 	title varchar not null
 );
